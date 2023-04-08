@@ -1,12 +1,22 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import './Friend.css'
+import { Link, useNavigate } from 'react-router-dom';
 
-const Friend = () => {
-    const data = useLoaderData();
-    console.log(data)
+const Friend = ({friend}) => {
+    const navigate = useNavigate();
+    const {name,email,id ,phone} = friend;
+
+    const handlerButton=()=>{
+        navigate(`/friend/${id}`)
+    }
     return (
-        <div>
-            <h4>My all frined</h4>
+        <div className='friend'>
+            <h4>{name}</h4>
+            <p>Email:{email}</p>
+            <p>{phone}</p>
+            <p><Link to={`/friend/${id}`}>Show Me</Link></p>
+            <button><Link to={`/friend/${id}`}>Show Derails</Link></button>
+            <button onClick={handlerButton}>Handler Button</button>
         </div>
     );
 };
